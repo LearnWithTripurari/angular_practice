@@ -1,10 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonService } from './common.service';
-import { Post } from './post.model';
-import {Observable} from "rxjs";
-import {Store} from "@ngrx/store";
-import {decrement, increment, reset} from "./counter.action";
-
+import {Component, OnInit} from '@angular/core';
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -13,39 +8,20 @@ import {decrement, increment, reset} from "./counter.action";
 })
 export class AppComponent implements OnInit {
 
-  count$: Observable<number>;
-
-  posts:Post[] = []
-  constructor(
-    //private commonSer: CommonService
-    private store: Store<{count: number}>
-    ) {
-    this.count$ = store.select('count')
-  }
-
   ngOnInit() {
-    console.log('ngOnInit')
 
-    // this.commonSer.getPost()
-    // .subscribe((res:Post[]) => {
-    //   console.log(res)
-    //   this.posts = res
-    // })
   }
 
-  showMessage(msg: string): string {
-    return msg;
-  }
+  login(loginFormRef: NgForm) {
 
-  increment() {
-  this.store.dispatch(increment())
-  }
+    console.log(loginFormRef)
 
-  decrement() {
-  this.store.dispatch(decrement())
-  }
+    if(loginFormRef.invalid) {
+      return;
+    }
+     const email = loginFormRef.form.value.email;
+     const password = loginFormRef.form.value.password;
 
-  reset() {
-  this.store.dispatch(reset())
+    console.log(email, password)
   }
 }

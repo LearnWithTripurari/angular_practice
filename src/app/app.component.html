@@ -1,19 +1,8 @@
+<h1>Login Here !</h1>
 
-<nav>
-  <li>Home</li>
-  <li>About Us</li>
-  <li>Contact Us</li>
-</nav>
+<form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+  <input type="email" placeholder="Email" ngModel name="email"  required> <br>
+  <input type="password" placeholder="Password" ngModel name="password" required> <br>
+  <button type="submit" [disabled]="loginForm.invalid">Login</button>
+</form>
 
-<ng-container *ngFor="let post of posts">
- <p>{{post.title}}</p>
-  <hr>
-</ng-container>
-
-<p>{{count$ | async}}</p>
-
-<button (click)="increment()">Increment</button>
-<button (click)="decrement()">Decrement</button>
-<button (click)="reset()">Reset</button>
-
-<router-outlet></router-outlet>
